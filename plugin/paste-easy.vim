@@ -2,48 +2,56 @@
 augroup paste_easy
 	au!
 	autocmd InsertCharPre * call <sid>char_inserted()
-	autocmd InsertLeave   * call <sid>insert_leave()
+	autocmd InsertLeave   * call <sid>stop_easy_paste()
 augroup END
 
 let s:start = reltime()
 let s:past_easy_mode = 0
 
-func! s:insert_leave()
-	if s:past_easy_mode
-		let s:counter = 0
-		let s:changedtick = 0
-		let s:past_easy_mode = 0
-		set nopaste
-		echom 'paste-easy end'
-	endif
-endfunc
-
 func! s:char_inserted()
 	let l:passed = reltimefloat(reltime(s:start))
 	let s:start = reltime()
-	if s:past_easy_mode
-		return
-	endif
 	if l:passed <= 0.01
 		" no way a human could get fast like that
-		" let g:operator = copy(v:event)
-		let s:past_easy_mode = 1
-		set paste
+		call s:start_easy_paste()
 	endif
 endfunc
 
-if !has('timers')
-	finish
-endif
+func! s:start_easy_paste()
+	if s:past_easy_mode
+		return
+	endif
+	let s:counter = 0
+	let s:changedtick = 0
+	let s:past_easy_mode = 1
+	set paste
 
-let s:changedtick = 0
-let s:counter = 0
+	if !has('timers')
+		finish
+	endif
 
-func! s:timer()
+	let s:changedtick = 0
+	let s:counter = 0
+	let s:timer = timer_start(50,function('s:on_timer'), {'repeat': -1})
 
+endfunc
+
+func! s:stop_easy_paste()
 	if s:past_easy_mode==0
 		return
 	endif
+
+	let s:past_easy_mode = 0
+	set nopaste
+	echom 'paste-easy end'
+
+	if !has('timers')
+		finish
+	endif
+	call timer_stop(s:timer)
+endfunc
+
+func! s:on_timer()
 
 	if s:changedtick == b:changedtick
 		let s:counter += 1
@@ -54,14 +62,8 @@ func! s:timer()
 	let s:changedtick = b:changedtick
 
 	if s:counter >= 2
-		let s:counter = 0
-		let s:changedtick = 0
-		let s:past_easy_mode = 0
-		set nopaste
-		echom 'paste-easy end'
+		call s:stop_easy_paste()
 	endif
 
 endfunc
-
-call timer_start(100,function('s:timer'), {'repeat': -1})
 

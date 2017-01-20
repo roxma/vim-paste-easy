@@ -9,6 +9,9 @@ let s:start = reltime()
 let s:past_easy_mode = 0
 
 func! s:char_inserted()
+	if s:past_easy_mode
+		return
+	endif
 	let l:passed = reltimefloat(reltime(s:start))
 	let s:start = reltime()
 	if l:passed <= 0.01

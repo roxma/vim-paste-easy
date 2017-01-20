@@ -2,11 +2,11 @@
 
 Automatically `set paste` for you.
 
-This is a tiny plugin that simply monitors your typing speed. When then typing
-interval between two typed characters is less than 0.01s, it automatically `set
-paste` for you. Because there's no human could type that fast! After you
-finish pasting, and leave insert mode, vim-paste-easy will automatically `set
-nopaste` for you.
+This is a tiny plugin that simply monitors your typing speed and `set paste`
+automatically. When then typing interval between two typed characters is less
+than 0.01s, it will `set paste` for you. Because there's no human being could
+type that fast! After you have finished pasting and leave insert mode,
+vim-paste-easy will `set nopaste` for you.
 
 ## Motivation
 

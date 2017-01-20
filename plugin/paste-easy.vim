@@ -10,11 +10,11 @@ let s:past_easy_mode = 0
 
 func! s:insert_leave()
 	if s:past_easy_mode
-		echom 'paste-easy end'
 		let s:counter = 0
 		let s:changedtick = 0
 		let s:past_easy_mode = 0
 		set nopaste
+		echom 'paste-easy end'
 	endif
 endfunc
 
@@ -54,11 +54,11 @@ func! s:timer()
 	let s:changedtick = b:changedtick
 
 	if s:counter >= 2
-		echom 'paste-easy end'
 		let s:counter = 0
 		let s:changedtick = 0
 		let s:past_easy_mode = 0
 		set nopaste
+		echom 'paste-easy end'
 	endif
 
 endfunc

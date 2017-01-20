@@ -11,6 +11,8 @@ let s:past_easy_mode = 0
 func! s:insert_leave()
 	if s:past_easy_mode
 		echom 'paste-easy end'
+		let s:counter = 0
+		let s:changedtick = 0
 		let s:past_easy_mode = 0
 		set nopaste
 	endif
@@ -29,4 +31,37 @@ func! s:char_inserted()
 		set paste
 	endif
 endfunc
+
+if !has('timers')
+	finish
+endif
+
+let s:changedtick = 0
+let s:counter = 0
+
+func! s:timer()
+
+	if s:past_easy_mode==0
+		return
+	endif
+
+	if s:changedtick == b:changedtick
+		let s:counter += 1
+	else
+		let s:counter = 0
+	endif
+
+	let s:changedtick = b:changedtick
+
+	if s:counter >= 2
+		echom 'paste-easy end'
+		let s:counter = 0
+		let s:changedtick = 0
+		let s:past_easy_mode = 0
+		set nopaste
+	endif
+
+endfunc
+
+call timer_start(100,function('s:timer'), {'repeat': -1})
 

@@ -10,7 +10,7 @@ let s:past_easy_mode = 0
 
 func! s:insert_leave()
 	if s:past_easy_mode
-		echo 'paste-easy end'
+		echom 'paste-easy end'
 		let s:past_easy_mode = 0
 		set nopaste
 	endif

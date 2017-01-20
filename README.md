@@ -17,3 +17,8 @@ code from other documents or web pages, I have to `:set paste` before
 work automatically, and it seems there's no way to detect `<Shift><Insert>`
 key in this case. Finally I decided to use the typing interval.
 
+## commands
+
+- `:PasteEasyDisable` disable paste-easy temporary
+- `:PasteEasyEnable` enable paste-easy
+

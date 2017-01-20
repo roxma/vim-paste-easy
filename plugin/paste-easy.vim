@@ -5,10 +5,18 @@ augroup paste_easy
 	autocmd InsertLeave   * call <sid>stop_easy_paste()
 augroup END
 
+command! PasteEasyDisable let g:paste_easy_enable=0
+command! PasteEasyEnable let g:paste_easy_enable=1
+
+let g:paste_easy_enable = get(g:,'paste_easy_enable',1)
+
 let s:start = reltime()
 let s:past_easy_mode = 0
 
 func! s:char_inserted()
+	if g:paste_easy_enable==0
+		return
+	endif
 	if s:past_easy_mode
 		return
 	endif

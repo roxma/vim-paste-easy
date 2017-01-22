@@ -20,5 +20,6 @@ key in this case. Finally I decided to use the typing interval.
 ## commands
 
 - `:PasteEasyDisable` disable paste-easy temporary
-- `:PasteEasyEnable` enable paste-easy
+- `:PasteEasyEnable` enable paste-easy. This plugin is enabled by default,
+  This command is only needed after you `PasteEasyDisable`.
 

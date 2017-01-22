@@ -23,3 +23,6 @@ key in this case. Finally I decided to use the typing interval.
 - `:PasteEasyEnable` enable paste-easy. This plugin is enabled by default,
   This command is only needed after you `PasteEasyDisable`.
 
+If you don't want vim-paste-easy enabled by default, add
+`let g:paste_easy_enable=0` into your vimrc.
+

@@ -62,7 +62,7 @@ func! s:stop_easy_paste()
 	call timer_stop(s:timer)
 endfunc
 
-func! s:on_timer()
+func! s:on_timer(timer)
 
 	if s:changedtick == b:changedtick
 		let s:counter += 1

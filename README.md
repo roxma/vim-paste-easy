@@ -17,6 +17,10 @@ code from other documents or web pages, I have to `:set paste` before
 work automatically, and it seems there's no way to detect `<Shift><Insert>`
 key in this case. Finally I decided to use the typing interval.
 
+## Requirements
+
+- For vim users, `InsertCharPre` is not available until Vim 7.3.598
+
 ## commands
 
 - `:PasteEasyDisable` disable paste-easy temporary

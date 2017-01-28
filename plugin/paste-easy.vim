@@ -9,9 +9,11 @@ command! PasteEasyDisable let g:paste_easy_enable=0
 command! PasteEasyEnable let g:paste_easy_enable=1
 
 let g:paste_easy_enable = get(g:,'paste_easy_enable',1)
+let g:paste_char_threshold = get(g:,'paste_char_threshold', 8)
 
 let s:start = reltime()
 let s:past_easy_mode = 0
+let s:paste_char_count = 0
 
 func! s:char_inserted()
 	if g:paste_easy_enable==0
@@ -24,7 +26,12 @@ func! s:char_inserted()
 	let s:start = reltime()
 	if l:passed <= 0.01
 		" no way a human could get fast like that
-		call s:start_easy_paste()
+		let s:paste_char_count = s:paste_char_count + 1
+		if s:paste_char_count >= g:paste_char_threshold
+			call s:start_easy_paste()
+		endif
+	else
+		let s:paste_char_count = 0
 	endif
 endfunc
 

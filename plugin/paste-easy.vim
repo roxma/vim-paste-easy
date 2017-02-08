@@ -9,7 +9,7 @@ command! PasteEasyDisable let g:paste_easy_enable=0
 command! PasteEasyEnable let g:paste_easy_enable=1
 
 let g:paste_easy_enable = get(g:,'paste_easy_enable',1)
-let g:paste_char_threshold = get(g:,'paste_char_threshold', 8)
+let g:paste_char_threshold = get(g:,'paste_char_threshold', 1)
 
 let s:start = reltime()
 let s:past_easy_mode = 0

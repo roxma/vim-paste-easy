@@ -30,3 +30,6 @@ key in this case. Finally I decided to use the typing interval.
 If you don't want vim-paste-easy enabled by default, add
 `let g:paste_easy_enable=0` into your vimrc.
 
+## Known issues
+
+- #3

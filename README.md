@@ -32,4 +32,4 @@ If you don't want vim-paste-easy enabled by default, add
 
 ## Known issues
 
-- #3
+- [#3](https://github.com/roxma/vim-paste-easy/pull/3)

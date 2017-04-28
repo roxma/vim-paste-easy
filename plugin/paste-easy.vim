@@ -3,6 +3,9 @@ augroup paste_easy
 	au!
 	autocmd InsertCharPre * call <sid>char_inserted()
 	autocmd InsertLeave   * call <sid>stop_easy_paste()
+
+    autocmd User MultipleCursorsPre  let s:lock = or(s:lock, 1)
+    autocmd User MultipleCursorsPost let s:lock = and(s:lock, 0xfe)
 augroup END
 
 command! PasteEasyDisable let g:paste_easy_enable=0
@@ -10,6 +13,10 @@ command! PasteEasyEnable let g:paste_easy_enable=1
 
 let g:paste_easy_enable = get(g:,'paste_easy_enable',1)
 let g:paste_char_threshold = get(g:,'paste_char_threshold', 1)
+
+" lock
+" 1 - vim-multipl-cursors
+let s:lock = 0
 
 let s:start = reltime()
 let s:past_easy_mode = 0
@@ -19,6 +26,9 @@ func! s:char_inserted()
 	if g:paste_easy_enable==0
 		return
 	endif
+    if s:lock
+        return
+    endif
 	if s:past_easy_mode
 		return
 	endif

@@ -5,7 +5,7 @@ augroup paste_easy
 	autocmd InsertLeave   * call <sid>stop_easy_paste()
 
     autocmd User MultipleCursorsPre  let s:lock = or(s:lock, 1)
-    autocmd User MultipleCursorsPost let s:lock = and(s:lock, 0xfe)
+    autocmd User MultipleCursorsPost let s:lock = and(s:lock, invert(0x01))
 augroup END
 
 command! PasteEasyDisable let g:paste_easy_enable=0

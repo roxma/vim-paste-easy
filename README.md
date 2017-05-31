@@ -30,6 +30,10 @@ key in this case. Finally I decided to use the typing interval.
 If you don't want vim-paste-easy enabled by default, add
 `let g:paste_easy_enable=0` into your vimrc.
 
+By default, paste-easy echo "paste-easy end" when it `set nopaste`.
+Auto modifying paste mode may produce undesired behavior, in such case, this message is useful for finding which plugin is controling this behavior.
+Add `let g:paste_easy_message=0` into your vimrc if you don't want it.
+
 ## Known issues
 
 - [#3](https://github.com/roxma/vim-paste-easy/pull/3)

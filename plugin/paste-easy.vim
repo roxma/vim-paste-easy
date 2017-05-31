@@ -13,6 +13,7 @@ command! PasteEasyEnable let g:paste_easy_enable=1
 
 let g:paste_easy_enable = get(g:,'paste_easy_enable',1)
 let g:paste_char_threshold = get(g:,'paste_char_threshold', 1)
+let g:paste_easy_message = get(g:,'paste_easy_message', 1)
 
 " lock
 " 1 - vim-multipl-cursors
@@ -71,7 +72,9 @@ func! s:stop_easy_paste()
 
 	let s:past_easy_mode = 0
 	set nopaste
-	echom 'paste-easy end'
+  if g:paste_easy_message
+    echom 'paste-easy end'
+  endif
 
 	if !has('timers')
 		finish

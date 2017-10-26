@@ -65,7 +65,7 @@ func! s:start_easy_paste()
 	set paste
 
 	if !has('timers')
-		finish
+        return
 	endif
 
 	let s:changedtick = 0
@@ -86,7 +86,7 @@ func! s:stop_easy_paste()
   endif
 
 	if !has('timers')
-		finish
+        return
 	endif
 	call timer_stop(s:timer)
 endfunc

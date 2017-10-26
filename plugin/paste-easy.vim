@@ -23,6 +23,15 @@ let s:start = reltime()
 let s:past_easy_mode = 0
 let s:paste_char_count = 0
 
+if exists('*reltimefloat')
+    let s:Reltimefloat = function('reltimefloat')
+else
+    func! s:Reltimefloat(rt)
+        execute 'let f = ' . reltimestr(a:rt)
+        return f
+    endfunc
+endif
+
 func! s:char_inserted()
 	if g:paste_easy_enable==0
 		return
@@ -33,7 +42,7 @@ func! s:char_inserted()
 	if s:past_easy_mode
 		return
 	endif
-	let l:passed = reltimefloat(reltime(s:start))
+	let l:passed = s:Reltimefloat(reltime(s:start))
 	let s:start = reltime()
 	if l:passed <= 0.01
 		" no way a human could get fast like that
